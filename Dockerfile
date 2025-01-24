@@ -82,7 +82,7 @@ RUN $bazel build //src/compiler:all
 WORKDIR /tmp
 
 # renovate: datasource=github-releases depName=grpc-java packageName=grpc/grpc-java
-ARG GRPC_JAVA_VERSION=1.69.1
+ARG GRPC_JAVA_VERSION=1.70.0
 RUN git clone --depth 1 --shallow-submodules -b v${GRPC_JAVA_VERSION} --recursive https://github.com/grpc/grpc-java
 WORKDIR /tmp/grpc-java
 RUN $bazel build //compiler:grpc_java_plugin
