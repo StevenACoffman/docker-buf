@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 golang:1.23.5-bookworm AS base
+FROM --platform=linux/amd64 golang:1.24.0-bookworm AS base
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y \
@@ -31,7 +31,7 @@ RUN curl -sSL "https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VER
 
 # https://pkg.go.dev/google.golang.org/protobuf/cmd/protoc-gen-go
 # renovate: datasource=go depName=protoc-gen-go packageName=google.golang.org/protobuf/cmd/protoc-gen-go
-ARG PROTOBUF_GO_VERSION=1.36.3
+ARG PROTOBUF_GO_VERSION=1.36.5
 RUN GOBIN=/usr/local/bin go install google.golang.org/protobuf/cmd/protoc-gen-go@v${PROTOBUF_GO_VERSION}
 
 # https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc
@@ -73,7 +73,7 @@ WORKDIR /tmp
 ARG bazel=/tmp/grpc/tools/bazel
 # https://github.com/grpc/grpc
 # renovate: datasource=github-releases depName=grpc/grpc packageName=grpc/grpc
-ARG GRPC_VERSION=1.69.0
+ARG GRPC_VERSION=1.70.1
 RUN git clone --depth 1 --shallow-submodules -b v${GRPC_VERSION} --recursive https://github.com/grpc/grpc
 WORKDIR /tmp/grpc
 RUN $bazel build //src/compiler:all
@@ -99,7 +99,7 @@ RUN apt-get update && apt-get install -y git
 
 # https://www.npmjs.com/package/grpc-tools
 # renovate: datasource=npm depName=grpc-tools packageName=grpc-tools
-ARG GRPC_NODE_TOOLS_VERSION=1.12.4
+ARG GRPC_NODE_TOOLS_VERSION=1.13.0
 # https://www.npmjs.com/package/@bufbuild/protoplugin
 # renovate: datasource=npm depName=buf-protoplugin packageName=@bufbuild/protoplugin
 ARG PROTOBUF_PROTOPLUGIN_VERSION=2.2.3
