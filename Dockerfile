@@ -16,7 +16,7 @@ RUN curl -sSL "https://github.com/protocolbuffers/protobuf/releases/download/v${
 
 # https://github.com/protocolbuffers/protobuf-javascript
 # renovate: datasource=github-releases depName=protobuf-javascript packageName=protocolbuffers/protobuf-javascript
-ARG PROTOBUF_JAVASCRIPT_VERSION=3.21.4
+ARG PROTOBUF_JAVASCRIPT_VERSION=4.0.2
 RUN curl -sSL "https://github.com/protocolbuffers/protobuf-javascript/releases/download/v${PROTOBUF_JAVASCRIPT_VERSION}/protobuf-javascript-${PROTOBUF_JAVASCRIPT_VERSION}-linux-x86_64.zip" \
     -o protoc-gen-js.zip && \
     unzip protoc-gen-js.zip -d protoc-gen-js/ && \
@@ -25,7 +25,7 @@ RUN curl -sSL "https://github.com/protocolbuffers/protobuf-javascript/releases/d
 # https://github.com/grpc/grpc-web
 WORKDIR /tmp
 # renovate: datasource=github-releases depName=grpc-web packageName=grpc/grpc-web
-ARG GRPC_WEB_VERSION=1.5.0
+ARG GRPC_WEB_VERSION=2.1.1
 RUN curl -sSL "https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_VERSION}/protoc-gen-grpc-web-${GRPC_WEB_VERSION}-linux-x86_64" -o /usr/local/bin/protoc-gen-web-grpc && \
     chmod +x /usr/local/bin/protoc-gen-web-grpc
 
@@ -92,7 +92,7 @@ WORKDIR /
 
 ##########
 ##########
-FROM node:22-bookworm-slim
+FROM node:24-bookworm-slim
 
 # Install dependencies
 RUN apt-get update && apt-get install -y git
