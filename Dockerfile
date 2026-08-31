@@ -9,7 +9,7 @@ WORKDIR /tmp
 
 # https://github.com/protocolbuffers/protobuf
 # renovate: datasource=github-releases depName=protoc packageName=protocolbuffers/protobuf
-ARG PROTOBUF_VERSION=29.3
+ARG PROTOBUF_VERSION=36.1
 RUN curl -sSL "https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip" -o protoc.zip && \
     unzip protoc.zip -d protoc/ && \
     chmod +x ./protoc/bin/protoc
